@@ -48,6 +48,6 @@ public class Printer implements IPrinter{
     }
 
     public void setConfig(String parameter, String value) {
-
+        currentState.setConfig(parameter,value);
     }
 }

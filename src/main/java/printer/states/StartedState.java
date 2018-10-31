@@ -6,6 +6,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StartedState extends State{
@@ -30,9 +31,16 @@ public class StartedState extends State{
 
     public void topQueue(int job) {
         List<Job> jobList = (List<Job>) printQueue;
-        Stream<Job> jobsToMove= jobList.stream().filter(i->i.jobNumber==job);
-        jobsToMove.forEach(i-> jobList.remove(i));
-        jobsToMove.forEach(i->jobList.add(0,i));
+        List<Job> jobsToMove= jobList.stream()
+                .filter(i->i.jobNumber==job)
+                .collect(Collectors.toList());
+        List<Job> filteredJobs= jobList.stream()
+                .filter(i->i.jobNumber!=job)
+                .collect(Collectors.toCollection(()->new LinkedList<Job>()));
+
+        filteredJobs.addAll(0,jobsToMove);
+        printQueue=(Queue)filteredJobs;
+
 
     }
 

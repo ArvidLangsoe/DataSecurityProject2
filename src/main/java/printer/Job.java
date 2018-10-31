@@ -1,5 +1,7 @@
 package printer;
 
+import java.util.Objects;
+
 public class Job {
     public int jobNumber;
     public String fileName;
@@ -7,5 +9,19 @@ public class Job {
     public Job(int jobNumber, String filename) {
         this.jobNumber=jobNumber;
         this.fileName=filename;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
+        return jobNumber == job.jobNumber &&
+                Objects.equals(fileName, job.fileName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(jobNumber, fileName);
     }
 }
