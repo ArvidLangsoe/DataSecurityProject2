@@ -29,7 +29,7 @@ public class StoppedState extends State {
     }
 
     public void stop() {
-        System.out.println("Printer was has already stopped");
+        System.out.println("Printer has already stopped");
     }
 
     public void restart() {
@@ -40,7 +40,7 @@ public class StoppedState extends State {
         return "Printer is stopped.";
     }
 
-    public void readConfig(String parameter) {
+    public String readConfig(String parameter) {
         throw new IllegalStateException("Printer is turned off");
     }
 

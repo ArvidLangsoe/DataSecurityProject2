@@ -11,6 +11,6 @@ public interface IPrinter {
     public void stop();
     public void restart();
     public String status();
-    public void readConfig(String parameter);
+    public String readConfig(String parameter);
     public void setConfig(String parameter, String value);
 }

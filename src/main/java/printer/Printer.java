@@ -44,8 +44,8 @@ public class Printer implements IPrinter{
         return currentState.status();
     }
 
-    public void readConfig(String parameter) {
-        currentState.readConfig(parameter);
+    public String readConfig(String parameter) {
+        return currentState.readConfig(parameter);
     }
 
     public void setConfig(String parameter, String value) {
