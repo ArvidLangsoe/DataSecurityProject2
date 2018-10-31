@@ -1,7 +1,11 @@
 package printer;
 
 public class Job {
-    int jobNumber;
-    String fileName;
+    public int jobNumber;
+    public String fileName;
 
+    public Job(int jobNumber, String filename) {
+        this.jobNumber=jobNumber;
+        this.fileName=filename;
+    }
 }
