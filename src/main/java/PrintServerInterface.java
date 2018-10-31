@@ -1,3 +1,5 @@
+import printer.Job;
+
 import java.util.List;
 
 public interface PrintServerInterface {
