@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface IPrinter {
 
-    public void print(String filename, String printer);
-    public List<Job> queue();
-    public void topQueue(int job);
-    public void start();
-    public void stop();
-    public void restart();
-    public String status();
-    public String readConfig(String parameter);
-    public void setConfig(String parameter, String value);
+    void print(String filename, String printer);
+    List queue();
+    void topQueue(int job);
+    void start();
+    void stop();
+    void restart();
+    String status();
+    String readConfig(String parameter);
+    void setConfig(String parameter, String value);
 }

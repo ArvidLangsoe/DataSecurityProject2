@@ -2,22 +2,22 @@ package printer.states;
 
 import printer.Job;
 import printer.Printer;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class StartedState extends State{
-    Queue<Job> printQueue;
-    Map<String,String> config;
-    int jobNum= 1;
+    private Queue<Job> printQueue;
+    private Map<String,String> config;
+    private int jobNum= 1;
 
     public StartedState(Printer printer) {
         super(printer);
-        printQueue = new LinkedList<Job>();
-        config = new ConcurrentHashMap<String, String>();
+        printQueue = new LinkedList<>();
+        config = new ConcurrentHashMap<>();
     }
 
     public void print(String filename, String printer) {
@@ -36,7 +36,7 @@ public class StartedState extends State{
                 .collect(Collectors.toList());
         List<Job> filteredJobs= jobList.stream()
                 .filter(i->i.jobNumber!=job)
-                .collect(Collectors.toCollection(()->new LinkedList<Job>()));
+                .collect(Collectors.toCollection(()->new LinkedList<>()));
 
         filteredJobs.addAll(0,jobsToMove);
         printQueue=(Queue)filteredJobs;
