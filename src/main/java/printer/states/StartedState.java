@@ -4,11 +4,9 @@ import printer.Job;
 import printer.Printer;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 public class StartedState extends State{
     Queue<Job> printQueue;
@@ -31,7 +29,11 @@ public class StartedState extends State{
     }
 
     public void topQueue(int job) {
-        throw new NotImplementedException();
+        List<Job> jobList = (List<Job>) printQueue;
+        Stream<Job> jobsToMove= jobList.stream().filter(i->i.jobNumber==job);
+        jobsToMove.forEach(i-> jobList.remove(i));
+        jobsToMove.forEach(i->jobList.add(0,i));
+
     }
 
     public void start() {
