@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class StartedState extends State{
     Queue<Job> printQueue;
     Map<String,String> config;
-    int jobNum= 0;
+    int jobNum= 1;
 
     public StartedState(Printer printer) {
         super(printer);
@@ -52,10 +52,10 @@ public class StartedState extends State{
 
     public String status() {
         if(printQueue.isEmpty()) {
-            return "Printer is started";
+            return "Started";
         }
         else{
-            return "Printer is printing";
+            return "Printing";
         }
     }
 

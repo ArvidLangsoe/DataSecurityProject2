@@ -37,7 +37,7 @@ public class StoppedState extends State {
     }
 
     public String status() {
-        return "Printer is stopped.";
+        return "Stopped";
     }
 
     public String readConfig(String parameter) {

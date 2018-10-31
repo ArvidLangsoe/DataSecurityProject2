@@ -2,7 +2,6 @@ package printer;
 
 import printer.states.StartedState;
 
-import java.awt.peer.PanelPeer;
 import java.util.List;
 
 public class Printer implements IPrinter{
