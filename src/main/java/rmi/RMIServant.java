@@ -1,3 +1,5 @@
+package rmi;
+
 import printer.Job;
 import printer.Printer;
 
@@ -9,14 +11,13 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
     Printer printer;
 
-    public RMIServant() throws RemoteException {
+    RMIServant() throws RemoteException {
         super();
     }
 
 
     @Override
     public void print(String token, String filename, String printer) {
-        System.out.println("Printing file: " + filename + " from printer: " + printer + ". Using token: " + token);
     }
 
     @Override
@@ -68,4 +69,5 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     public void logout(String token) {
 
     }
+
 }
