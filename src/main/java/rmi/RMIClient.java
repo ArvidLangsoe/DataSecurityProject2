@@ -25,8 +25,9 @@ public class RMIClient {
         }
         int correctInput = inputScan.nextInt();
 
+
+        Scanner inputScanner = new Scanner(System.in);
         while (true){
-            Scanner inputScanner = new Scanner(System.in);
             switch (correctInput) {
                 case 1:
                     System.out.println("Please specify file and printer:");
