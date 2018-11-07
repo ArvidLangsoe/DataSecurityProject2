@@ -36,34 +36,37 @@ public class RMIClient {
                         System.out.println("Please specify file and printer:");
                         String inputFileName = inputScan.nextLine();
                         String inputPrinterName = inputScan.nextLine();
-                        System.out.println("Sending file: " + inputFileName + " for printer: " + inputPrinterName);
+                        System.out.println("Send file: " + inputFileName + " for printer: " + inputPrinterName);
                         printerServer.print(token, inputFileName, inputPrinterName);
                         break;
                     case "2":
-                        printerServer.queue(token);
+                        System.out.println(printerServer.queue(token));
                         break;
                     case "3":
                         System.out.println("Please specify fileindex to push to top of queue.");
                         int inputJobIndex = Integer.parseInt(inputScan.nextLine());
                         printerServer.topQueue(token, inputJobIndex);
-                        System.out.println("Pushing file index: " + inputJobIndex + " to top of queue.");
+                        System.out.println("Pushed file index: " + inputJobIndex + " to top of queue.");
                         break;
                     case "4":
                         printerServer.start(token);
+                        System.out.println("Printer Started");
                         break;
                     case "5":
                         printerServer.stop(token);
+                        System.out.println("Printer Stopped");
                         break;
                     case "6":
                         printerServer.restart(token);
+                        System.out.println("Printer Reset");
                         break;
                     case "7":
-                        printerServer.status(token);
+                        System.out.println("Printer status: "+printerServer.status(token));
                         break;
                     case "8":
                         System.out.println("Please specify config to read.");
                         String inputConfigName = inputScan.nextLine();
-                        printerServer.readConfig(token, inputConfigName);
+                        System.out.println(inputConfigName+": "+printerServer.readConfig(token, inputConfigName));
                         break;
                     case "9":
                         System.out.println("Please specify config to read and new value.");

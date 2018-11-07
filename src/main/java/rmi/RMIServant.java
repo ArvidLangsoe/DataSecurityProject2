@@ -72,7 +72,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
     @Override
     public void logout(String token) {
-        
+
     }
 
 }
