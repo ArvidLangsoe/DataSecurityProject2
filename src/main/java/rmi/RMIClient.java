@@ -19,15 +19,11 @@ public class RMIClient {
         printWelcomeMessage();
 
         Scanner inputScan = new Scanner(System.in);
-        while (!inputScan.hasNextInt()) {
-            System.out.println("Input not recognised. Please try again.");
-            inputScan.next();
-        }
-        int correctInput = inputScan.nextInt();
 
-
+        int correctInput;
         Scanner inputScanner = new Scanner(System.in);
         while (true){
+            correctInput = inputScan.nextInt();
             switch (correctInput) {
                 case 1:
                     System.out.println("Please specify file and printer:");
@@ -84,7 +80,6 @@ public class RMIClient {
                 default:
                     System.out.println("Input not recognised. Please try again");
             }
-            correctInput = inputScan.nextInt();
         }
     }
 
