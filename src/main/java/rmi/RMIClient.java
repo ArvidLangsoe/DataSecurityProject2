@@ -73,16 +73,18 @@ public class RMIClient {
                         String inputEditConfigName = inputScan.nextLine();
                         String inputEditConfigNewText = inputScan.nextLine();
                         printerServer.setConfig(token, inputEditConfigName, inputEditConfigNewText);
+                        System.out.println("Config set");
                         break;
                     case "10":
                         System.out.println("Please specify username and password.");
                         String inputUserName = inputScan.nextLine();
                         String inputUserPass = inputScan.nextLine();
-                        printerServer.login(inputUserName, inputUserPass);
+                        token =printerServer.login(inputUserName, inputUserPass);
+                        System.out.println("Sucessful login");
                         break;
                     case "11":
-                        System.out.println("Logging out of user.");
                         printerServer.logout(token);
+                        System.out.println("User logged out.");
                         break;
                     case "000":
                         System.out.println("Exiting program...");
