@@ -1,8 +1,9 @@
 package printer;
 //Test pushing
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Job {
+public class Job implements Serializable {
     public int jobNumber;
     public String fileName;
 
@@ -23,5 +24,13 @@ public class Job {
     @Override
     public int hashCode() {
         return Objects.hash(jobNumber, fileName);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "jobNumber=" + jobNumber +
+                ", fileName='" + fileName + '\'' +
+                '}';
     }
 }

@@ -80,7 +80,7 @@ public class RMIClient {
                         String inputUserName = inputScan.nextLine();
                         String inputUserPass = inputScan.nextLine();
                         token =printerServer.login(inputUserName, inputUserPass);
-                        System.out.println("Sucessful login");
+                        System.out.println("Succesful login");
                         break;
                     case "11":
                         printerServer.logout(token);
