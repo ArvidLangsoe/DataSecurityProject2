@@ -80,7 +80,15 @@ public class RMIClient {
                         String inputUserName = inputScan.nextLine();
                         String inputUserPass = inputScan.nextLine();
                         token =printerServer.login(inputUserName, inputUserPass);
-                        System.out.println("Sucessful login");
+
+                        if(token.equals("INVALID PASSWORD"))
+                            System.out.println("The password is not recognized.");
+
+                        else if(token.equals("INVALID USERNAME"))
+                            System.out.println("The username does not exist.");
+
+                        else
+                            System.out.println("Sucessful login.");
                         break;
                     case "11":
                         printerServer.logout(token);
