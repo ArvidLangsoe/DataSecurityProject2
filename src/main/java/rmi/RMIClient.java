@@ -34,67 +34,56 @@ public class RMIClient {
                     String inputPrinterName = inputScanner.next();
                     System.out.println("Sending file: " + inputFileName + " for printer: " + inputPrinterName);
                     userSession.print(token, inputFileName, inputPrinterName);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 2:
                     userSession.queue(token);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 3:
                     System.out.println("Please specify fileindex to push to top of queue.");
                     int inputJobIndex = inputScanner.nextInt();
                     userSession.topQueue(token, inputJobIndex);
                     System.out.println("Pushing file index: " + inputJobIndex + " to top of queue.");
-                    correctInput = inputScan.nextInt();
                     break;
                 case 4:
                     userSession.start(token);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 5:
                     userSession.stop(token);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 6:
                     userSession.restart(token);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 7:
                     userSession.status(token);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 8:
                     System.out.println("Please specify config to read.");
                     String inputConfigName = inputScanner.next();
                     userSession.readConfig(token, inputConfigName);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 9:
                     System.out.println("Please specify config to read and new value.");
                     String inputEditConfigName = inputScanner.next();
                     String inputEditConfigNewText = inputScanner.next();
                     userSession.setConfig(token, inputEditConfigName, inputEditConfigNewText);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 10:
                     System.out.println("Please specify username and password.");
                     String inputUserName = inputScanner.next();
                     String inputUserPass = inputScanner.next();
                     userSession.login(inputUserName, inputUserPass);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 11:
                     System.out.println("Logging out of user.");
                     userSession.logout(token);
-                    correctInput = inputScan.nextInt();
                     break;
                 case 000:
                     System.out.println("Exiting program...");
-                    break;
+                    return;
                 default:
                     System.out.println("Input not recognised. Please try again");
-                    correctInput = inputScan.nextInt();
             }
+            correctInput = inputScan.nextInt();
         }
     }
 
