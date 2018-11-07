@@ -14,7 +14,7 @@ public class RMIClient {
 
         String token = "Hackerman";
 
-        PrintServerInterface userSession = (PrintServerInterface) Naming.lookup("rmi://localhost:5099/rmiserver");
+        PrintServerInterface printerServer = (PrintServerInterface) Naming.lookup("rmi://localhost:5099/rmiserver");
 
         printWelcomeMessage();
 
@@ -30,49 +30,49 @@ public class RMIClient {
                         String inputFileName = inputScan.nextLine();
                         String inputPrinterName = inputScan.nextLine();
                         System.out.println("Sending file: " + inputFileName + " for printer: " + inputPrinterName);
-                        userSession.print(token, inputFileName, inputPrinterName);
+                        printerServer.print(token, inputFileName, inputPrinterName);
                         break;
                     case "2":
-                        userSession.queue(token);
+                        printerServer.queue(token);
                         break;
                     case "3":
                         System.out.println("Please specify fileindex to push to top of queue.");
                         int inputJobIndex = Integer.parseInt(inputScan.nextLine());
-                        userSession.topQueue(token, inputJobIndex);
+                        printerServer.topQueue(token, inputJobIndex);
                         System.out.println("Pushing file index: " + inputJobIndex + " to top of queue.");
                         break;
                     case "4":
-                        userSession.start(token);
+                        printerServer.start(token);
                         break;
                     case "5":
-                        userSession.stop(token);
+                        printerServer.stop(token);
                         break;
                     case "6":
-                        userSession.restart(token);
+                        printerServer.restart(token);
                         break;
                     case "7":
-                        userSession.status(token);
+                        printerServer.status(token);
                         break;
                     case "8":
                         System.out.println("Please specify config to read.");
                         String inputConfigName = inputScan.nextLine();
-                        userSession.readConfig(token, inputConfigName);
+                        printerServer.readConfig(token, inputConfigName);
                         break;
                     case "9":
                         System.out.println("Please specify config to read and new value.");
                         String inputEditConfigName = inputScan.nextLine();
                         String inputEditConfigNewText = inputScan.nextLine();
-                        userSession.setConfig(token, inputEditConfigName, inputEditConfigNewText);
+                        printerServer.setConfig(token, inputEditConfigName, inputEditConfigNewText);
                         break;
                     case "10":
                         System.out.println("Please specify username and password.");
                         String inputUserName = inputScan.nextLine();
                         String inputUserPass = inputScan.nextLine();
-                        userSession.login(inputUserName, inputUserPass);
+                        printerServer.login(inputUserName, inputUserPass);
                         break;
                     case "11":
                         System.out.println("Logging out of user.");
-                        userSession.logout(token);
+                        printerServer.logout(token);
                         break;
                     case "000":
                         System.out.println("Exiting program...");
