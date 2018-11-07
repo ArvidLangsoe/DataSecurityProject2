@@ -13,7 +13,6 @@ public class RMIClient {
     PrintServerInterface printerServer;
 
     public static void main(String[] args) throws Exception {
-
         new RMIClient().run();
     }
 
