@@ -61,8 +61,8 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     }
 
     @Override
-    public void login(String username, String password) {
-
+    public String login(String username, String password) {
+        return null;
     }
 
     @Override

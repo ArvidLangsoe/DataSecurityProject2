@@ -26,7 +26,7 @@ public interface PrintServerInterface extends Remote {
 
     void setConfig(String token, String parameter, String value) throws RemoteException;
 
-    void login(String username, String password) throws RemoteException;
+    String login(String username, String password) throws RemoteException;
 
     void logout(String token) throws RemoteException;
 

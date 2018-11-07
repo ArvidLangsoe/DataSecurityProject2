@@ -8,18 +8,26 @@ import java.util.Scanner;
 
 
 public class RMIClient {
+    String token = "Hackerman";
+    Scanner inputScan = new Scanner(System.in);
+    PrintServerInterface printerServer;
 
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
+        new RMIClient().run();
+    }
 
-        String token = "Hackerman";
-
-        PrintServerInterface printerServer = (PrintServerInterface) Naming.lookup("rmi://localhost:5099/rmiserver");
-
+    private void run() throws RemoteException, NotBoundException, MalformedURLException {
+        printerServer =connectToServer();
         printWelcomeMessage();
+        handleUserInput();
+    }
 
-        Scanner inputScan = new Scanner(System.in);
+    private PrintServerInterface connectToServer() throws RemoteException, NotBoundException, MalformedURLException {
+        return (PrintServerInterface) Naming.lookup("rmi://localhost:5099/rmiserver");
+    }
 
+    private void handleUserInput(){
         String correctInput;
         while (true){
             try {
