@@ -4,10 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.*;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LoginController {
 
@@ -68,8 +65,19 @@ public class LoginController {
 
         while(finalToken == null || tokens.contains(finalToken)) {
             SecureRandom random = new SecureRandom();
-            long tk = random.nextLong();
-            finalToken = String.format("%05d", tk);
+
+            byte bytes[] = new byte[64];
+            random.nextBytes(bytes);
+
+            Base64.Encoder encoder = Base64.getUrlEncoder().withoutPadding();
+            String token = encoder.encodeToString(bytes);
+
+            // The basic encoder encodes the input with a number of bytes and maps the output to a list of
+            // characters in A-Za-z0-9+/ character set.
+
+            System.out.println("Generated token : " + token);
+
+            return token;
         }
 
         tokens.add(finalToken);
