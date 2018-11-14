@@ -96,4 +96,9 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
         loginController.logout(token);
     }
 
+    @Override
+    public List<String> getUserPermissions(Token token) throws Exception {
+        return null;
+    }
+
 }

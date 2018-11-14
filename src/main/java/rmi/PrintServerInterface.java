@@ -31,4 +31,6 @@ public interface PrintServerInterface extends Remote {
 
     void logout(Token token) throws RemoteException;
 
+    List<String> getUserPermissions(Token token) throws Exception;
+
 }
