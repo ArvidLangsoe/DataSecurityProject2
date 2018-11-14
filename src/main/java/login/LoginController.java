@@ -70,14 +70,13 @@ public class LoginController {
             random.nextBytes(bytes);
 
             Base64.Encoder encoder = Base64.getUrlEncoder().withoutPadding();
-            String token = encoder.encodeToString(bytes);
+            finalToken = encoder.encodeToString(bytes);
 
             // The basic encoder encodes the input with a number of bytes and maps the output to a list of
             // characters in A-Za-z0-9+/ character set.
 
-            System.out.println("Generated token : " + token);
+            System.out.println("Generated token : " + finalToken);
 
-            return token;
         }
 
         tokens.add(finalToken);
