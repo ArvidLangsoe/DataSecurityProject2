@@ -8,8 +8,9 @@ import java.util.*;
 
 public class LoginController {
 
-    List<String> tokens = new ArrayList<String>();
+    //List<String> tokens = new ArrayList<String>();
     HashMap<String, String> passwords;
+    HashMap<String, Token> tokens = new HashMap<>();
 
     public LoginController(){
         passwords = new HashMap<String, String>();
@@ -40,47 +41,49 @@ public class LoginController {
 
     }
 
-    public String login(String username, String password) {
+    public Token login(String username, String password) throws Exception {
         if (passwords.get(username) != null) {
             if (BCrypt.checkpw(password, passwords.get(username))) {
-                return generateToken();
+                return generateToken(username);
             } else {
-                return "INVALID PASSWORD";
+                throw new Exception("INVALID PASSWORD");
             }
         }else{
-            return "INVALID USERNAME";
+            throw new Exception("INVALID USERNAME");
         }
     }
 
-    public void logout(String token){
-        tokens.remove(token);
+    public void logout(Token token){
+        tokens.remove(token.getUsername());
     }
 
-    public boolean isCorrectToken(String token){
-        return tokens.contains(token);
+    public boolean isCorrectToken(Token token) throws Exception {
+        if(tokens.get(token.getUsername()) == null)
+            throw new Exception("No token given, please login again.");
+
+        return tokens.get(token.getUsername()).equals(token);
     }
 
-    private String generateToken(){
+    private Token generateToken(String username){
         String finalToken = null;
 
-        while(finalToken == null || tokens.contains(finalToken)) {
-            SecureRandom random = new SecureRandom();
+        SecureRandom random = new SecureRandom();
 
-            byte bytes[] = new byte[64];
-            random.nextBytes(bytes);
+        byte bytes[] = new byte[64];
+        random.nextBytes(bytes);
 
-            Base64.Encoder encoder = Base64.getUrlEncoder().withoutPadding();
-            finalToken = encoder.encodeToString(bytes);
+        Base64.Encoder encoder = Base64.getUrlEncoder().withoutPadding();
+        finalToken = encoder.encodeToString(bytes);
 
             // The basic encoder encodes the input with a number of bytes and maps the output to a list of
             // characters in A-Za-z0-9+/ character set.
 
-            System.out.println("Generated token : " + finalToken);
+        System.out.println("["+username+"]"+" Generated token : " + finalToken);
 
-        }
+        Token returnToken =  new Token(finalToken, username);
+        tokens.put(username, returnToken);
 
-        tokens.add(finalToken);
-        return finalToken;
+        return returnToken;
     }
 
     private void writeData(Map<String, String> map) throws IOException {

@@ -1,5 +1,7 @@
 package rmi;
 
+import login.Token;
+
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 
 public class RMIClient {
-    String token = "Hackerman";
+    Token token = new Token("HackMads", "Username");
     Scanner inputScan = new Scanner(System.in);
     PrintServerInterface printerServer;
 
@@ -79,7 +81,7 @@ public class RMIClient {
                         System.out.println("Please specify username and password.");
                         String inputUserName = inputScan.nextLine();
                         String inputUserPass = inputScan.nextLine();
-                        token =printerServer.login(inputUserName, inputUserPass);
+                        token = printerServer.login(inputUserName, inputUserPass);
 
                         if(token.equals("INVALID PASSWORD"))
                             System.out.println("The password is not recognized.");
