@@ -12,22 +12,22 @@ import java.util.List;
 
 public class RMIServant extends UnicastRemoteObject implements PrintServerInterface {
 
-    IPrinter printer;
+    private IPrinter printer;
 
-    LoginController loginController;
+    private LoginController loginController;
 
     RMIServant() throws RemoteException {
         super();
-        printer=new Printer();
+        printer = new Printer();
         loginController = new LoginController();
     }
 
 
     private void checkToken(Token token) throws Exception {
-        if(token == null)
+        if (token == null)
             throw new Exception("No token given, please login again.");
 
-        if(!loginController.isCorrectToken(token))
+        if (!loginController.isCorrectToken(token))
             throw new Exception("Invalid token, please login again.");
 
     }
@@ -35,7 +35,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     @Override
     public void print(Token token, String filename, String printer) throws Exception {
         checkToken(token);
-        this.printer.print(filename,printer);
+        this.printer.print(filename, printer);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     @Override
     public void setConfig(Token token, String parameter, String value) throws Exception {
         checkToken(token);
-        printer.setConfig(parameter,value);
+        printer.setConfig(parameter, value);
     }
 
     @Override

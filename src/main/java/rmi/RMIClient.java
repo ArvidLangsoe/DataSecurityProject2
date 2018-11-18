@@ -19,7 +19,7 @@ public class RMIClient {
     }
 
     private void run() throws RemoteException, NotBoundException, MalformedURLException {
-        printerServer =connectToServer();
+        printerServer = connectToServer();
         printWelcomeMessage();
         handleUserInput();
     }
@@ -28,9 +28,9 @@ public class RMIClient {
         return (PrintServerInterface) Naming.lookup("rmi://localhost:5099/rmiserver");
     }
 
-    private void handleUserInput(){
+    private void handleUserInput() {
         String correctInput;
-        while (true){
+        while (true) {
             try {
                 correctInput = inputScan.nextLine();
                 switch (correctInput) {
@@ -63,12 +63,12 @@ public class RMIClient {
                         System.out.println("Printer Reset");
                         break;
                     case "7":
-                        System.out.println("Printer status: "+printerServer.status(token));
+                        System.out.println("Printer status: " + printerServer.status(token));
                         break;
                     case "8":
                         System.out.println("Please specify config to read.");
                         String inputConfigName = inputScan.nextLine();
-                        System.out.println(inputConfigName+": "+printerServer.readConfig(token, inputConfigName));
+                        System.out.println(inputConfigName + ": " + printerServer.readConfig(token, inputConfigName));
                         break;
                     case "9":
                         System.out.println("Please specify config to read and new value.");
@@ -83,10 +83,10 @@ public class RMIClient {
                         String inputUserPass = inputScan.nextLine();
                         token = printerServer.login(inputUserName, inputUserPass);
 
-                        if(token.equals("INVALID PASSWORD"))
+                        if (token.equals("INVALID PASSWORD"))
                             System.out.println("The password is not recognized.");
 
-                        else if(token.equals("INVALID USERNAME"))
+                        else if (token.equals("INVALID USERNAME"))
                             System.out.println("The username does not exist.");
 
                         else
@@ -102,7 +102,7 @@ public class RMIClient {
                     default:
                         System.out.println("Input not recognised. Please try again");
                 }
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
