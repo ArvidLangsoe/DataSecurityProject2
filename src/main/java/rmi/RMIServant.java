@@ -41,7 +41,6 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
         if(!loginController.hasPermission(token,permission))
             throw new Exception("Insufficient Permission.");
 
-
     }
 
     @Override

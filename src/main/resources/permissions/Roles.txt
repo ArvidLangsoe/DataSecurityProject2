@@ -1,0 +1,15 @@
+$User = print, queue
+$Technician = start, stop, restart, status, readConfig, setConfig
+$Poweruser = topQueue, restart, $User
+$Manager = $Technician, $Poweruser
+
+
+#David = $User
+#Erica = $User
+#Fred = $User
+#George = $User
+
+#Cecilia = $Poweruser
+#Bob = $Technician
+
+#Alice = $Manager

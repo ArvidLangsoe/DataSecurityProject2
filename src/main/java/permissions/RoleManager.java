@@ -3,6 +3,7 @@ package permissions;
 import files.FileLoader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +22,18 @@ public class RoleManager implements PermissionManager{
 
     @Override
     public List<Permissions> getPermissionsOfUser(String userName) {
-        return userRoles.get(userName).getPermissions().stream().collect(Collectors.toList());
+        if(userRoles.containsKey(userName)) {
+            return userRoles.get(userName).getPermissions().stream().collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 
     @Override
     public boolean userHasPermission(String userName, Permissions permission) {
-        return userRoles.get(userName).hasPermission(permission);
+        if(userRoles.containsKey(userName)) {
+            return userRoles.get(userName).hasPermission(permission);
+        }
+        return false;
     }
 
     public void importRoles() throws IOException {
