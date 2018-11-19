@@ -20,7 +20,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     RMIServant() throws RemoteException {
         super();
         printer=new Printer();
-        loginController = new LoginController();
+        loginController = new LoginController(null);
     }
 
 
@@ -103,7 +103,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
     @Override
     public List<Permissions> getUserPermissions(Token token) throws Exception {
-        return loginController.getPermissions();
+        return loginController.getPermissions(token);
     }
 
 }
