@@ -15,8 +15,8 @@ public class RoleManagerTest {
     public void testRoleManager() throws IOException {
         RoleManager rm = new RoleManager();
         rm.importRolesFromFile("permissions/RolesTest.txt");
-        List<Permissions> georgeActual = rm.getPermissionOfUser("George");
-        List<Permissions> aliceActual = rm.getPermissionOfUser("Alice");
+        List<Permissions> georgeActual = rm.getPermissionsOfUser("George");
+        List<Permissions> aliceActual = rm.getPermissionsOfUser("Alice");
 
         List<Permissions> georgeExpected = Arrays.stream(new Permissions[]{Permissions.PRINT, Permissions.QUEUE}).collect(Collectors.toList());
         List<Permissions> aliceExpected = Arrays.stream(
