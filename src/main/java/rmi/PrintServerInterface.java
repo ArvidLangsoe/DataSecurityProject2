@@ -1,6 +1,7 @@
 package rmi;
 
 import login.Token;
+import permissions.Permissions;
 import printer.Job;
 
 import java.rmi.Remote;
@@ -31,6 +32,6 @@ public interface PrintServerInterface extends Remote {
 
     void logout(Token token) throws RemoteException;
 
-    List<String> getUserPermissions(Token token) throws Exception;
+    List<Permissions> getUserPermissions(Token token) throws Exception;
 
 }
