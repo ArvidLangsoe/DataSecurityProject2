@@ -21,9 +21,27 @@ public class Role {
         return roleName;
     }
 
-    public Set<Permissions> getPermissions() {
-        return permissions;
+
+    public Set<Permissions> getPermissions(){
+        return getPermissions(new HashSet<>());
     }
+    private Set<Permissions> getPermissions(Set<String> roleNames) {
+        Set<Permissions> currentPerm = new HashSet<>();
+        for(Role r: inheretedRoles){
+            if(!roleNames.contains(r.getRoleName())) {
+                roleNames.add(r.getRoleName());
+                currentPerm.addAll(r.getPermissions(roleNames));
+
+            }
+        }
+        currentPerm.addAll(permissions);
+        return currentPerm;
+    }
+
+    public boolean hasPermission(Permissions permission){
+        return getPermissions().contains(permission);
+    }
+
 
     public void addPermission(String permission){
         permissions.add(Permissions.valueOf(permission.toUpperCase()));
@@ -32,4 +50,5 @@ public class Role {
     public void addInheretedRoles(Role inheretedRole) {
         this.inheretedRoles.add(inheretedRole);
     }
+
 }
