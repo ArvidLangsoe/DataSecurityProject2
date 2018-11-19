@@ -30,7 +30,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
         if(!loginController.isCorrectToken(token))
             throw new Exception("Invalid token, please login again.");
-        if(!loginController.hasPermission(token,permission));
+        if(!loginController.hasPermission(token,permission))
             throw new Exception("Insufficient Permission.");
 
 
