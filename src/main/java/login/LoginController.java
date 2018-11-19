@@ -1,6 +1,7 @@
 package login;
 
 import org.mindrot.jbcrypt.BCrypt;
+import permissions.Permissions;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
@@ -100,11 +101,11 @@ public class LoginController {
         return result;
     }
 
-    public boolean hasPermission(Token token, String permission) {
+    public boolean hasPermission(Token token, Permissions permission) {
         throw new NotImplementedException();
     }
 
-    public List<String> getPermissions() {
+    public List<Permissions> getPermissions() {
         throw new NotImplementedException();
     }
 }

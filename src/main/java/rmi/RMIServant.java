@@ -2,6 +2,7 @@ package rmi;
 
 import login.LoginController;
 import login.Token;
+import permissions.Permissions;
 import printer.IPrinter;
 import printer.Job;
 import printer.Printer;
@@ -23,7 +24,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     }
 
 
-    private void checkToken(Token token,String permission) throws Exception {
+    private void checkToken(Token token, Permissions permission) throws Exception {
         if(token == null)
             throw new Exception("No token given, please login again.");
 
@@ -37,55 +38,55 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
     @Override
     public void print(Token token, String filename, String printer) throws Exception {
-        checkToken(token,"print");
+        checkToken(token,Permissions.PRINT);
         this.printer.print(filename,printer);
     }
 
     @Override
     public List<Job> queue(Token token) throws Exception {
-        checkToken(token,"queue");
+        checkToken(token,Permissions.QUEUE);
         return printer.queue();
     }
 
     @Override
     public void topQueue(Token token, int job) throws Exception {
-        checkToken(token,"topQueue");
+        checkToken(token,Permissions.TOPQUEUE);
         printer.topQueue(job);
     }
 
     @Override
     public void start(Token token) throws Exception {
-        checkToken(token,"start");
+        checkToken(token,Permissions.START);
         printer.start();
     }
 
     @Override
     public void stop(Token token) throws Exception {
-        checkToken(token,"stop");
+        checkToken(token,Permissions.STOP);
         printer.stop();
     }
 
     @Override
     public void restart(Token token) throws Exception {
-        checkToken(token,"restart");
+        checkToken(token,Permissions.RESTART);
         printer.restart();
     }
 
     @Override
     public String status(Token token) throws Exception {
-        checkToken(token,"status");
+        checkToken(token,Permissions.STATUS);
         return printer.status();
     }
 
     @Override
     public String readConfig(Token token, String parameter) throws Exception {
-        checkToken(token,"readConfig");
+        checkToken(token,Permissions.READCONFIG);
         return printer.readConfig(parameter);
     }
 
     @Override
     public void setConfig(Token token, String parameter, String value) throws Exception {
-        checkToken(token, "setConfig");
+        checkToken(token, Permissions.SETCONFIG);
 
         printer.setConfig(parameter,value);
     }
@@ -101,7 +102,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     }
 
     @Override
-    public List<String> getUserPermissions(Token token) throws Exception {
+    public List<Permissions> getUserPermissions(Token token) throws Exception {
         return loginController.getPermissions();
     }
 
