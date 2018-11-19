@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RoleManager {
+public class RoleManager implements PermissionManager{
 
     HashMap<String, Role> userRoles;
     HashMap<String, Role> availableRoles;
@@ -18,8 +18,15 @@ public class RoleManager {
         availableRoles =new HashMap<>();
     }
 
-    public List<Permissions> getPermissionOfUser(String userName){
+
+    @Override
+    public List<Permissions> getPermissionsOfUser(String userName) {
         return userRoles.get(userName).getPermissions().stream().collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean userHasPermission(String userName, Permissions permission) {
+        return userRoles.get(userName).hasPermission(permission);
     }
 
     public void importRoles() throws IOException {
@@ -91,4 +98,6 @@ public class RoleManager {
             availableRoles.put(r.getRoleName(), r);
         }
     }
+
+
 }
