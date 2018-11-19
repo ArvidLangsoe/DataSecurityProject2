@@ -20,7 +20,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     RMIServant() throws RemoteException {
         super();
         printer=new Printer();
-        loginController = new LoginController();
+        loginController = new LoginController(null);
     }
 
 
@@ -30,7 +30,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
         if(!loginController.isCorrectToken(token))
             throw new Exception("Invalid token, please login again.");
-        if(!loginController.hasPermission(token,permission));
+        if(!loginController.hasPermission(token,permission))
             throw new Exception("Insufficient Permission.");
 
 
@@ -103,7 +103,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
     @Override
     public List<Permissions> getUserPermissions(Token token) throws Exception {
-        return loginController.getPermissions();
+        return loginController.getPermissions(token);
     }
 
 }
