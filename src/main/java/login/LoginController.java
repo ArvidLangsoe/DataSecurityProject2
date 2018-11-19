@@ -1,14 +1,13 @@
 package login;
 
 import org.mindrot.jbcrypt.BCrypt;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
 import java.security.SecureRandom;
 import java.util.*;
 
 public class LoginController {
-
-    //List<String> tokens = new ArrayList<String>();
     HashMap<String, String> passwords;
     HashMap<String, Token> tokens = new HashMap<>();
 
@@ -99,5 +98,13 @@ public class LoginController {
         Map result = (Map) ois.readObject();
         ois.close();
         return result;
+    }
+
+    public boolean hasPermission(Token token, String permission) {
+        throw new NotImplementedException();
+    }
+
+    public List<String> getPermissions() {
+        throw new NotImplementedException();
     }
 }
