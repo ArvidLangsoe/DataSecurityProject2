@@ -16,11 +16,6 @@ public class RoleManager {
     public RoleManager(){
         userRoles = new HashMap<>();
         availableRoles =new HashMap<>();
-        try {
-            importRoles();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public List<Permissions> getPermissionOfUser(String userName){
@@ -41,6 +36,9 @@ public class RoleManager {
 
     private void importLine(String line) {
         String lineNoWhiteSpace =line.replaceAll(" ","");
+        if(line.isEmpty()){
+            return;
+        }
         String[] lineParts=lineNoWhiteSpace.split("=");
         String identifier = lineParts[0];
         String[] content = lineParts[1].split(",");

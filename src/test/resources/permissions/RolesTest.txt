@@ -1,4 +1,4 @@
-$User = print, queue, login, logout
+$User = print, queue
 $Technician = start, stop, restart, status, readConfig, setConfig
 $Poweruser = topQueue, restart, $User
 $Manager = $Technician, $Poweruser
