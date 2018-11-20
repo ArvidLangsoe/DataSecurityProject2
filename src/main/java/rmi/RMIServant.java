@@ -2,7 +2,9 @@ package rmi;
 
 import login.LoginController;
 import login.Token;
+import permissions.PermissionManager;
 import permissions.Permissions;
+import permissions.PrinterPermissionManager;
 import printer.IPrinter;
 import printer.Job;
 import printer.Printer;
@@ -20,7 +22,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     RMIServant() throws RemoteException {
         super();
         printer=new Printer();
-        loginController = new LoginController(null);
+        loginController = new LoginController(new PrinterPermissionManager());
     }
 
 
@@ -30,6 +32,7 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
         if(!loginController.isCorrectToken(token))
             throw new Exception("Invalid token, please login again.");
+
         if(!loginController.hasPermission(token,permission))
             throw new Exception("Insufficient Permission.");
 
