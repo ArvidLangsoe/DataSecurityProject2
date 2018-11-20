@@ -8,9 +8,14 @@ import java.util.List;
 
 public class PrinterPermissionManager implements PermissionManager {
 
-    HashMap<String, ArrayList<Permissions>> permissions = new HashMap<>();
+    HashMap<String, ArrayList<Permissions>> permissions;
 
     private final String FILEPATH = "Permissions.json";
+
+    public PrinterPermissionManager(){
+        permissions = JsonConverter.retrieveFromFile(FILEPATH);
+        System.out.println(permissions);
+    }
 
 
     @Override
@@ -20,7 +25,10 @@ public class PrinterPermissionManager implements PermissionManager {
 
     @Override
     public boolean userHasPermission(String userName, Permissions permission) {
-        return permissions.get(userName).contains(permission);
+        boolean hasPermission = permissions.get(userName).contains(permission.toString());
+        System.out.println("["+userName+"] Checking permission: "+permission+" -> "+hasPermission);
+        return hasPermission;
+
     }
 
 

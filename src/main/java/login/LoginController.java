@@ -37,6 +37,14 @@ public class LoginController {
         passwords.put("Peter", BCrypt.hashpw("23", BCrypt.gensalt()));
         passwords.put("Mads", BCrypt.hashpw("45", BCrypt.gensalt()));
 
+        passwords.put("David", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        passwords.put("Erica", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        passwords.put("Fred", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        passwords.put("George", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        passwords.put("Cecillia", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        passwords.put("Bob", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        passwords.put("Alice", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+
         try {
             writeData(passwords);
         } catch (IOException e) {
