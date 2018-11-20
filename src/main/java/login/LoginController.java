@@ -1,18 +1,22 @@
 package login;
 
 import org.mindrot.jbcrypt.BCrypt;
+import permissions.PermissionManager;
+import permissions.Permissions;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
 import java.security.SecureRandom;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LoginController {
-
-    //List<String> tokens = new ArrayList<String>();
     HashMap<String, String> passwords;
     HashMap<String, Token> tokens = new HashMap<>();
+    private PermissionManager permissionManager;
 
-    public LoginController(){
+    public LoginController(PermissionManager permissionManager){
+        this.permissionManager = permissionManager;
         passwords = new HashMap<String, String>();
 
         try {
@@ -99,5 +103,20 @@ public class LoginController {
         Map result = (Map) ois.readObject();
         ois.close();
         return result;
+    }
+
+    public boolean hasPermission(Token token, Permissions permission) {
+        if(permissionManager==null){
+            return true;
+        }
+        return permissionManager.userHasPermission(token.getUsername(),permission);
+
+    }
+
+    public List<Permissions> getPermissions(Token token) {
+        if(permissionManager==null){
+            return Arrays.stream(Permissions.values()).collect(Collectors.toList());
+        }
+        return permissionManager.getPermissionsOfUser(token.getUsername());
     }
 }
