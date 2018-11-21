@@ -13,9 +13,9 @@ import java.util.Scanner;
 
 public class JsonConverter {
 
-    private static Gson gson = new Gson();
+    private Gson gson = new Gson();
 
-    public static void writeFile(String filepath, HashMap<String, ArrayList<Permissions>> object){
+    public void writeFile(String filepath, HashMap<String, ArrayList<Permissions>> object){
         String jsonObject = gson.toJson(object);
 
         try (PrintStream out = new PrintStream(new FileOutputStream(filepath))) {
@@ -25,7 +25,7 @@ public class JsonConverter {
         }
     }
 
-    public static HashMap<String, ArrayList<Permissions>> retrieveFromFile(String filepath){
+    public HashMap<String, ArrayList<Permissions>> retrieveFromFile(String filepath){
 
         Scanner scanner = null;
         try {

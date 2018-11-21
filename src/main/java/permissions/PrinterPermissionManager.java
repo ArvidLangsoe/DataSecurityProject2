@@ -10,10 +10,12 @@ public class PrinterPermissionManager implements PermissionManager {
 
     HashMap<String, ArrayList<Permissions>> permissions;
 
+    private JsonConverter jsonConverter = new JsonConverter();
+
     private final String FILEPATH = "Permissions.json";
 
     public PrinterPermissionManager(){
-        permissions = JsonConverter.retrieveFromFile(FILEPATH);
+        permissions = jsonConverter.retrieveFromFile(FILEPATH);
         System.out.println(permissions);
     }
 
