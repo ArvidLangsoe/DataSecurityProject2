@@ -2,6 +2,7 @@ package rmi;
 
 import login.LoginController;
 import login.Token;
+import permissions.PermissionManager;
 import permissions.Permissions;
 import permissions.accesscontrol.acl.ACLPermissionManager;
 import permissions.accesscontrol.rbac.RBACPermissionManager;
@@ -12,6 +13,7 @@ import printer.Printer;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.security.Permission;
 import java.util.List;
 
 public class RMIServant extends UnicastRemoteObject implements PrintServerInterface {
@@ -20,16 +22,10 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
 
     LoginController loginController;
 
-    RMIServant() throws RemoteException {
+    RMIServant(PermissionManager permManager) throws RemoteException {
         super();
         printer=new Printer();
-        RBACPermissionManager RBACPermissionManager = new RBACPermissionManager();
-        try {
-            RBACPermissionManager.importRoles();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        loginController = new LoginController(new ACLPermissionManager());
+        loginController = new LoginController(permManager);
     }
 
 
