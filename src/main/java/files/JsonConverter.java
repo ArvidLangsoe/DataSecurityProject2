@@ -15,15 +15,6 @@ public class JsonConverter {
 
     private Gson gson = new Gson();
 
-    public void writeFile(String filepath, HashMap<String, ArrayList<Permissions>> object){
-        String jsonObject = gson.toJson(object);
-
-        try (PrintStream out = new PrintStream(new FileOutputStream(filepath))) {
-            out.print(jsonObject);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public HashMap<String, ArrayList<Permissions>> retrieveFromFile(String filepath){
 

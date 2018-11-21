@@ -1,4 +1,6 @@
-package permissions;
+package permissions.accesscontrol.rbac;
+
+import permissions.Permissions;
 
 import java.util.HashSet;
 import java.util.LinkedList;

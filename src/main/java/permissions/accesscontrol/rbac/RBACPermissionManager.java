@@ -1,6 +1,8 @@
-package permissions;
+package permissions.accesscontrol.rbac;
 
 import files.FileLoader;
+import permissions.PermissionManager;
+import permissions.Permissions;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RoleManager implements PermissionManager{
+public class RBACPermissionManager implements PermissionManager {
 
     HashMap<String, Role> userRoles;
     HashMap<String, Role> availableRoles;
 
 
-    public RoleManager(){
+    public RBACPermissionManager(){
         userRoles = new HashMap<>();
         availableRoles =new HashMap<>();
     }

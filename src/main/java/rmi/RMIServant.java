@@ -2,10 +2,9 @@ package rmi;
 
 import login.LoginController;
 import login.Token;
-import permissions.PermissionManager;
 import permissions.Permissions;
-import permissions.PrinterPermissionManager;
-import permissions.RoleManager;
+import permissions.accesscontrol.acl.ACLPermissionManager;
+import permissions.accesscontrol.rbac.RBACPermissionManager;
 import printer.IPrinter;
 import printer.Job;
 import printer.Printer;
@@ -24,13 +23,13 @@ public class RMIServant extends UnicastRemoteObject implements PrintServerInterf
     RMIServant() throws RemoteException {
         super();
         printer=new Printer();
-        RoleManager roleManager= new RoleManager();
+        RBACPermissionManager RBACPermissionManager = new RBACPermissionManager();
         try {
-            roleManager.importRoles();
+            RBACPermissionManager.importRoles();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        loginController = new LoginController(new PrinterPermissionManager());
+        loginController = new LoginController(new ACLPermissionManager());
     }
 
 

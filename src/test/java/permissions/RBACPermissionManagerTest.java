@@ -1,6 +1,7 @@
 package permissions;
 
 import org.junit.jupiter.api.Test;
+import permissions.accesscontrol.rbac.RBACPermissionManager;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -9,11 +10,11 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RoleManagerTest {
+public class RBACPermissionManagerTest {
 
     @Test
     public void testRoleManager() throws IOException {
-        RoleManager rm = new RoleManager();
+        RBACPermissionManager rm = new RBACPermissionManager();
         rm.importRolesFromFile("permissions/RolesTest.txt");
         List<Permissions> georgeActual = rm.getPermissionsOfUser("George");
         List<Permissions> aliceActual = rm.getPermissionsOfUser("Alice");

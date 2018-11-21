@@ -1,12 +1,14 @@
-package permissions;
+package permissions.accesscontrol.acl;
 
 import files.JsonConverter;
+import permissions.PermissionManager;
+import permissions.Permissions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PrinterPermissionManager implements PermissionManager {
+public class ACLPermissionManager implements PermissionManager {
 
     HashMap<String, ArrayList<Permissions>> permissions;
 
@@ -14,7 +16,7 @@ public class PrinterPermissionManager implements PermissionManager {
 
     private final String FILEPATH = "Permissions.json";
 
-    public PrinterPermissionManager(){
+    public ACLPermissionManager(){
         permissions = jsonConverter.retrieveFromFile(FILEPATH);
         System.out.println(permissions);
     }

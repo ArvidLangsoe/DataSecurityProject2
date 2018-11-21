@@ -1,6 +1,7 @@
 package permissions;
 
 import org.junit.jupiter.api.Test;
+import permissions.accesscontrol.rbac.Role;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
