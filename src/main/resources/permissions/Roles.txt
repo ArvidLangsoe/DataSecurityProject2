@@ -7,9 +7,10 @@ $Manager = $Technician, $Poweruser
 #David = $User
 #Erica = $User
 #Fred = $User
-#George = $User
+#Henry = $User
+#George = $Technician
 
+#Ida = $Poweruser
 #Cecilia = $Poweruser
-#Bob = $Technician
 
 #Alice = $Manager
