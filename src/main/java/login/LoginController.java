@@ -42,7 +42,7 @@ public class LoginController {
         passwords.put("Fred", BCrypt.hashpw("Pass", BCrypt.gensalt()));
         passwords.put("George", BCrypt.hashpw("Pass", BCrypt.gensalt()));
         passwords.put("Cecilia", BCrypt.hashpw("Pass", BCrypt.gensalt()));
-        passwords.put("Bob", BCrypt.hashpw("Pass", BCrypt.gensalt()));
+        //passwords.put("Bob", BCrypt.hashpw("Pass", BCrypt.gensalt()));
         passwords.put("Alice", BCrypt.hashpw("Pass", BCrypt.gensalt()));
         passwords.put("Henry", BCrypt.hashpw("Pass", BCrypt.gensalt()));
         passwords.put("Ida", BCrypt.hashpw("Pass", BCrypt.gensalt()));
