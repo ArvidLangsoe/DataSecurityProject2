@@ -1,9 +1,0 @@
-{
-  "George": [ "PRINT", "QUEUE"],
-  "Bob": [ "RESTART", "STATUS", "READCONFIG", "SETCONFIG", "START", "STOP" ],
-  "Alice": [ "PRINT", "QUEUE", "TOPQUEUE", "RESTART", "STATUS", "READCONFIG", "SETCONFIG", "START", "STOP" ],
-  "David": [ "PRINT", "QUEUE"],
-  "Fred": [ "PRINT", "QUEUE"],
-  "Erica": [ "PRINT", "QUEUE"],
-  "Cecillia": [ "PRINT", "QUEUE", "TOPQUEUE", "RESTART" ]
-}

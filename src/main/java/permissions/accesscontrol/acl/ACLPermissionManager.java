@@ -14,7 +14,7 @@ public class ACLPermissionManager implements PermissionManager {
 
     private JsonConverter jsonConverter = new JsonConverter();
 
-    private final String FILEPATH = "Permissions.json";
+    private final String FILEPATH = "permissions/Permissions.json";
 
     public ACLPermissionManager(){
         permissions = jsonConverter.retrieveFromFile(FILEPATH);

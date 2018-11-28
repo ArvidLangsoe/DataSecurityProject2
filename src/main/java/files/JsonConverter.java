@@ -16,14 +16,11 @@ public class JsonConverter {
     private Gson gson = new Gson();
 
 
-    public HashMap<String, ArrayList<Permissions>> retrieveFromFile(String filepath){
-
+    public HashMap<String, ArrayList<Permissions>> retrieveFromFile(String filePath){
+        ClassLoader classLoader = getClass().getClassLoader();
         Scanner scanner = null;
-        try {
-            scanner = new Scanner( new File(filepath) );
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        scanner = new Scanner(classLoader.getResourceAsStream(filePath));
+
         String fileText = scanner.useDelimiter("\\A").next();
         scanner.close();
 
